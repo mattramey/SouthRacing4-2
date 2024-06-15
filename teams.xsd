@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Step 2 create schema file for teams-->
+<!--
+New Perspectives on XML
+Tutorial 4
+Case Problem 2
+
+South Racing teams schema
+Author: Matt Ramey
+Date: 6/15/24
+
+Filename:         teams.xsd
+Supporting Files: teamscars.xml
+-->
+<!-- step 2 Schema information-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+           targetNamespace="http://example.com/southracing/teams"
+           xmlns="http://example.com/southracing/teams"
+           elementFormDefault="qualified">
+
+<!--teams element and attributes-->
+  <xs:element name="teams">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="team" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="team">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="title" type="xs:string"/>
+        <xs:element name="description" type="xs:string"/>
+        <xs:element name="series" type="xs:string"/>
+        <xs:element ref="cars"/>
+      </xs:sequence>
+      <xs:attribute name="tid" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+<!--Cars element and attributes-->
+  <xs:element name="cars" type="CarsType"/>
+
+  <xs:complexType name="CarsType">
+    <xs:sequence>
+      <xs:element ref="car" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="car">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="title" type="xs:string"/>
+        <xs:element name="model" type="xs:string"/>
+        <xs:element name="driver" type="xs:string"/>
+      </xs:sequence>
+      <xs:attribute name="cid" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

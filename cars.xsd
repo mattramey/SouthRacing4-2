@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+New Perspectives on XML
+Tutorial 4
+Case Problem 2
+
+South Racing cars schema
+Author: Matt Ramey
+Date: 6/15/24
+
+Filename:         cars.xsd
+Supporting Files: teamscars.xml
+-->
+<!--Step 2 create a schema file for cars-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+           targetNamespace="http://example.com/southracing/cars"
+           xmlns="http://example.com/southracing/cars"
+           elementFormDefault="qualified">
+<!--car elements-->
+  <xs:element name="cars">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="car" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="car">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="title" type="xs:string"/>
+        <xs:element name="model" type="xs:string"/>
+        <xs:element name="driver" type="xs:string"/>
+      </xs:sequence>
+      <xs:attribute name="cid" type="xs:string" use="required"/>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>
